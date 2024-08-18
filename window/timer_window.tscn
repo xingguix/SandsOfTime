@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdtckv37boi5u"]
+
+[ext_resource type="Script" path="res://window/timer_window.gd" id="1_rpns4"]
+
+[node name="TimerWindow" type="Window"]
+position = Vector2i(0, 36)
+size = Vector2i(200, 100)
+unresizable = true
+borderless = true
+always_on_top = true
+transparent = true
+script = ExtResource("1_rpns4")
