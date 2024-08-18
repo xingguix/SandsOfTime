@@ -1,6 +1,7 @@
 extends Control
 
 var editing: bool = false
+var doubling: bool = false
 @export var sand_pillar: TextureRect
 @export var time_label: Label
 
@@ -23,7 +24,7 @@ func _physics_process(_delta):
 		var mouse_position = get_local_mouse_position()
 		var exact_time: int = ((size.y - mouse_position.y)/size.y) * 120
 		var result_time
-		if Input.is_action_pressed("shift"):
+		if Input.is_action_pressed("shift") or doubling:
 			result_time = exact_time
 		else:
 			result_time = closest_number(exact_time, range(0, 121, 10))
@@ -36,3 +37,4 @@ func _on_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == 1:
 			editing = event.pressed
+			doubling = event.double_click

@@ -13,7 +13,10 @@ config_version=5
 config/name="时之沙计时器"
 run/main_scene="res://main_ui/main_ui.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 0)
+boot_splash/image="res://sands_of_time.png"
+boot_splash/use_filter=false
+config/icon="res://sands_of_time.png"
 
 [autoload]
 
@@ -22,6 +25,7 @@ TimeTransfer="*res://auto_load/time_transfer.gd"
 [display]
 
 window/subwindows/embed_subwindows=false
+window/per_pixel_transparency/allowed=true
 
 [input]
 
@@ -31,6 +35,13 @@ shift={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://language/language.en.translation", "res://language/language.zh.translation")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
+viewport/transparent_background=true

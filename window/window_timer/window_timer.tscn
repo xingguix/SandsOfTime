@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://ve52njy2nota"]
+
+[ext_resource type="Script" path="res://window/window_timer/window_timer.gd" id="1_ax4n3"]
+[ext_resource type="Texture2D" uid="uid://b6xwci04idcf0" path="res://sands_of_time.png" id="3_mpvxu"]
+[ext_resource type="FontFile" uid="uid://cusv4i2ts62is" path="res://font/fusion-pixel-12px-proportional-zh_hans.ttf" id="4_85y7u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sltxt"]
+bg_color = Color(0.301961, 0.301961, 0.301961, 0.67451)
+
+[node name="WindowTimer" type="Control" node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 487.0
+offset_right = -487.0
+offset_bottom = 50.0
+grow_horizontal = 2
+script = ExtResource("1_ax4n3")
+label = NodePath("HBoxContainer/Label")
+
+[node name="ColorRect" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sltxt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_mpvxu")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_fonts/font = ExtResource("4_85y7u")
+theme_override_font_sizes/font_size = 30
+text = "11:11"
+horizontal_alignment = 1
+vertical_alignment = 1

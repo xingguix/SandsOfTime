@@ -1,23 +1,46 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgf4b0qf6ahtl"]
+[gd_scene load_steps=17 format=3 uid="uid://bgf4b0qf6ahtl"]
 
+[ext_resource type="Script" path="res://main_ui/main_ui.gd" id="1_0thgd"]
 [ext_resource type="PackedScene" uid="uid://bskina12mj4mm" path="res://main_ui/sand_timer.tscn" id="1_4r742"]
 [ext_resource type="FontFile" uid="uid://cusv4i2ts62is" path="res://font/fusion-pixel-12px-proportional-zh_hans.ttf" id="2_4wdow"]
 [ext_resource type="Script" path="res://main_ui/ButtonBox.gd" id="2_fyc44"]
 [ext_resource type="StyleBox" uid="uid://bsvbvr3ckhuu6" path="res://style_box/sand_box.tres" id="2_ol5ps"]
 [ext_resource type="StyleBox" uid="uid://bwso8kqvuqxon" path="res://style_box/sand_box_light.tres" id="5_ocbdx"]
 [ext_resource type="StyleBox" uid="uid://c0170lvtny8wl" path="res://style_box/sand_box_pressed.tres" id="6_jkmcf"]
+[ext_resource type="AudioStream" uid="uid://cuejc1jrcsq8c" path="res://main_ui/button.ogg" id="8_8jyee"]
+[ext_resource type="AudioStream" uid="uid://dh7rpky7ndk5l" path="res://main_ui/finish.ogg" id="9_h3i77"]
+[ext_resource type="PackedScene" uid="uid://cdtckv37boi5u" path="res://window/timer_window.tscn" id="10_qih8d"]
+[ext_resource type="AudioStream" uid="uid://cy3wro1s74y2q" path="res://main_ui/sandtimer_10sec.ogg" id="11_q4lve"]
+[ext_resource type="AudioStream" uid="uid://btt5dg316exqm" path="res://main_ui/music_sot.ogg" id="11_t4dvh"]
+[ext_resource type="AudioStream" uid="uid://cghq10cvoqwe0" path="res://main_ui/sandtimer_20sec.ogg" id="12_68co2"]
+[ext_resource type="AudioStream" uid="uid://dhkegddbvs8w1" path="res://main_ui/sandtimer_30sec.ogg" id="13_iwngs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ye7tv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bx4ec"]
 
-[node name="MainUI" type="Control"]
+[node name="MainUI" type="Control" node_paths=PackedStringArray("button_player", "finish_player", "music_player", "timer", "timer_window")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0thgd")
+button_player = NodePath("AudioPlayers/ButtonPlayer")
+finish_player = NodePath("AudioPlayers/FinishPlayer")
+music_player = NodePath("AudioPlayers/Music")
+timer = NodePath("Timer")
+timer_window = NodePath("TimerWindow")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.81365, 0.606445, 0.334096, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -54,22 +77,52 @@ script = ExtResource("2_fyc44")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_4wdow")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 47
 theme_override_styles/normal = ExtResource("2_ol5ps")
 theme_override_styles/hover = ExtResource("5_ocbdx")
 theme_override_styles/pressed = ExtResource("6_jkmcf")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_ye7tv")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bx4ec")
-text = "开始计时"
+text = "START"
 
 [node name="Settings" type="Button" parent="HBoxContainer/Control/ButtonBox"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_4wdow")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 47
 theme_override_styles/normal = ExtResource("2_ol5ps")
 theme_override_styles/hover = ExtResource("5_ocbdx")
 theme_override_styles/pressed = ExtResource("6_jkmcf")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_ye7tv")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bx4ec")
-text = "设置"
+text = "SETTINGS"
+
+[node name="AudioPlayers" type="Node2D" parent="."]
+
+[node name="ButtonPlayer" type="AudioStreamPlayer2D" parent="AudioPlayers"]
+stream = ExtResource("8_8jyee")
+
+[node name="FinishPlayer" type="AudioStreamPlayer2D" parent="AudioPlayers"]
+stream = ExtResource("9_h3i77")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="AudioPlayers"]
+stream = ExtResource("11_t4dvh")
+
+[node name="10" type="AudioStreamPlayer2D" parent="AudioPlayers"]
+stream = ExtResource("11_q4lve")
+
+[node name="20" type="AudioStreamPlayer2D" parent="AudioPlayers"]
+stream = ExtResource("12_68co2")
+
+[node name="30" type="AudioStreamPlayer2D" parent="AudioPlayers"]
+stream = ExtResource("13_iwngs")
+
+[node name="TimerWindow" parent="." instance=ExtResource("10_qih8d")]
+visible = false
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="HBoxContainer/Control/ButtonBox/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="HBoxContainer/Control/ButtonBox/Settings" to="." method="_on_settings_pressed"]
+[connection signal="finished" from="AudioPlayers/Music" to="." method="_on_music_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
