@@ -1,4 +1,15 @@
-[gd_scene format=3 uid="uid://bgf4b0qf6ahtl"]
+[gd_scene load_steps=9 format=3 uid="uid://bgf4b0qf6ahtl"]
+
+[ext_resource type="PackedScene" uid="uid://bskina12mj4mm" path="res://main_ui/sand_timer.tscn" id="1_4r742"]
+[ext_resource type="FontFile" uid="uid://cusv4i2ts62is" path="res://font/fusion-pixel-12px-proportional-zh_hans.ttf" id="2_4wdow"]
+[ext_resource type="Script" path="res://main_ui/ButtonBox.gd" id="2_fyc44"]
+[ext_resource type="StyleBox" uid="uid://bsvbvr3ckhuu6" path="res://style_box/sand_box.tres" id="2_ol5ps"]
+[ext_resource type="StyleBox" uid="uid://bwso8kqvuqxon" path="res://style_box/sand_box_light.tres" id="5_ocbdx"]
+[ext_resource type="StyleBox" uid="uid://c0170lvtny8wl" path="res://style_box/sand_box_pressed.tres" id="6_jkmcf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ye7tv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bx4ec"]
 
 [node name="MainUI" type="Control"]
 layout_mode = 3
@@ -7,3 +18,58 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SandTimer" parent="HBoxContainer" instance=ExtResource("1_4r742")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="ButtonBox" type="VBoxContainer" parent="HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 210.0
+offset_top = 134.0
+offset_right = -210.0
+offset_bottom = -134.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 63
+script = ExtResource("2_fyc44")
+
+[node name="Start" type="Button" parent="HBoxContainer/Control/ButtonBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_4wdow")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("2_ol5ps")
+theme_override_styles/hover = ExtResource("5_ocbdx")
+theme_override_styles/pressed = ExtResource("6_jkmcf")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ye7tv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bx4ec")
+text = "开始计时"
+
+[node name="Settings" type="Button" parent="HBoxContainer/Control/ButtonBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_4wdow")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("2_ol5ps")
+theme_override_styles/hover = ExtResource("5_ocbdx")
+theme_override_styles/pressed = ExtResource("6_jkmcf")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ye7tv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bx4ec")
+text = "设置"
