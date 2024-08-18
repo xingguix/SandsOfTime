@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://xgxb41470bi5"]
+
+[node name="TimerControl" type="HBoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -296.0
+offset_right = 296.0
+offset_bottom = 131.0
+grow_horizontal = 2

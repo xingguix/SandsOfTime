@@ -14,6 +14,14 @@ config/name="时之沙计时器"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+TimeTransfer="*res://auto_load/time_transfer.gd"
+
 [display]
 
 window/subwindows/embed_subwindows=false
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
