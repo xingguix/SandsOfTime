@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cu26535py6kpj"]
+
+[node name="SettingPanel" type="PopupPanel"]
+size = Vector2i(800, 400)
+visible = true

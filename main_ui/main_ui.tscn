@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bgf4b0qf6ahtl"]
+[gd_scene load_steps=18 format=3 uid="uid://bgf4b0qf6ahtl"]
 
 [ext_resource type="Script" path="res://main_ui/main_ui.gd" id="1_0thgd"]
 [ext_resource type="PackedScene" uid="uid://bskina12mj4mm" path="res://main_ui/sand_timer.tscn" id="1_4r742"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://btt5dg316exqm" path="res://main_ui/music_sot.ogg" id="11_t4dvh"]
 [ext_resource type="AudioStream" uid="uid://cghq10cvoqwe0" path="res://main_ui/sandtimer_20sec.ogg" id="12_68co2"]
 [ext_resource type="AudioStream" uid="uid://dhkegddbvs8w1" path="res://main_ui/sandtimer_30sec.ogg" id="13_iwngs"]
+[ext_resource type="PackedScene" uid="uid://cu26535py6kpj" path="res://main_ui/setting_panel/setting_panel.tscn" id="15_xc1bm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ye7tv"]
 
@@ -121,6 +122,8 @@ stream = ExtResource("13_iwngs")
 visible = false
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="SettingPanel" parent="." instance=ExtResource("15_xc1bm")]
 
 [connection signal="pressed" from="HBoxContainer/Control/ButtonBox/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="HBoxContainer/Control/ButtonBox/Settings" to="." method="_on_settings_pressed"]

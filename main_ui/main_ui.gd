@@ -5,6 +5,7 @@ extends Control
 @export var music_player: AudioStreamPlayer2D
 @export var timer: Timer
 @export var timer_window: TimerWindow
+@onready var setting_panel = $SettingPanel
 
 @onready var p10 = $"AudioPlayers/10"
 @onready var p20 = $"AudioPlayers/20"
@@ -17,6 +18,7 @@ func play_button_sound():
 	button_player.play()
 
 func finish():
+	timer_window.hide()
 	timer.stop()
 	music_player.stop()
 	finish_player.play()
@@ -34,6 +36,7 @@ func _on_start_pressed():
 
 func _on_settings_pressed():
 	play_button_sound()
+	setting_panel.popup_centered()
 
 func _on_music_finished():
 	music_player.play()
